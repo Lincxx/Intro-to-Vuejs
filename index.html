@@ -8,7 +8,45 @@
   <title>Intro to Vue JS</title>
 </head>
 <body>
-  <div>Hello</div>
+  <div id="app" class="bg-gray-200 h-screen  flex flex-col align-center justify-center  pt-8">
+    <h1 class="text-4xl font-thin">
+      Welcome to {{storeName}}
+    </h1>
+    <ul class="mt-16">
+      <li v-for="product in products" >{{ product }}</li>
+    </ul>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app", 
+      data: {
+        storeName : 'TheStore', 
+        products: [
+          {
+            id:0,
+            names: "Apples",
+            qty:5
+          },
+          {
+            id: 1,
+            names: "Oranges",
+            qty: 2
+          },
+          {
+            id: 2,
+            names: "Tortillas",
+            qty: 0
+          },
+          {
+            id: 3,
+            names: "T-Bone",
+            qty: 9
+          },
+        ]
+      }
+    })
+    
+  </script>
 </body>
 </html>
