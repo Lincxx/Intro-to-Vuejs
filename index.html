@@ -1,52 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
   <title>Intro to Vue JS</title>
 </head>
+
 <body>
-  <div id="app" class="bg-gray-200 h-screen  flex flex-col align-center justify-center  pt-8">
+  <div id="app" class="bg-gray-200 h-screen  flex flex-col items-center justify-center  pt-8">
     <h1 class="text-4xl font-thin">
       Welcome to {{storeName}}
     </h1>
-    <ul class="mt-16">
-      <li v-for="product in products" >{{ product }}</li>
+    <ul class="mt-16 w-10/12">
+      <li class="bg-white mt-4 p-2 shadow-lg text-gray-800" v-for="product in products">  
+        {{ product.qty }} - {{ product.name }} 
+        <span v-if="product.qty===0" class="ml-4 text-red-300 font-bold">
+          Out of Stock
+        </span>
+      </li>
     </ul>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script>
     const app = new Vue({
-      el: "#app", 
+      el: "#app",
       data: {
-        storeName : 'TheStore', 
+        storeName: 'TheStore',
         products: [
           {
-            id:0,
-            names: "Apples",
-            qty:5
+            id: 0,
+            name: "Apples",
+            qty: 5
           },
           {
             id: 1,
-            names: "Oranges",
+            name: "Oranges",
             qty: 2
           },
           {
             id: 2,
-            names: "Tortillas",
+            name: "Tortillas",
             qty: 0
           },
           {
             id: 3,
-            names: "T-Bone",
+            name: "T-Bone",
             qty: 9
           },
         ]
       }
     })
-    
+
   </script>
 </body>
+
 </html>
