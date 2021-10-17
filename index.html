@@ -12,7 +12,7 @@
 
 <body>
   <div id="app" class="bg-gray-200 h-screen  flex flex-col items-center justify-center  pt-8">
-    <h1 class="text-4xl font-thin">
+    <h1 class="text-6xl font-thin">
       Welcome to {{storeName}}
     </h1>
     <ul class="mt-16 w-10/12">
@@ -21,8 +21,18 @@
         <span v-if="product.qty===0" class="ml-4 text-red-300 font-bold">
           Out of Stock
         </span>
+        <button @click="product.qty++" class="bg-green-400 rounded text-white px-4 ml-16">
+          +
+        </button>
+        <button
+         v-if="product.qty>0"
+         @click="product.qty--" 
+         class="bg-red-400 rounded text-white px-4 ">
+          -
+        </button>
       </li>
     </ul>
+    <h2 class="text-4xl">Total Inventory: {{ totalInventory }}</h2>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script>
@@ -52,6 +62,13 @@
             qty: 9
           },
         ]
+      },
+      computed: {
+        totalInventory() {
+          return this.products.reduce((total, product) =>{
+            return total + product.qty;
+          }, 0);
+        }
       }
     })
 
